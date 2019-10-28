@@ -1,0 +1,56 @@
+body {
+  margin: 0;
+  padding: 0; }
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+  .container .containerTetris {
+    --cellSize: 30px;
+    --cellBorderSize: 1px;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    perspective: 800px; }
+    .container .containerTetris * {
+      transform-style: preserve-3d; }
+    .container .containerTetris table {
+      transform: rotatex(0deg);
+      border-collapse: collapse; }
+      .container .containerTetris table tr td {
+        padding: 0;
+        width: var(--cellSize);
+        height: var(--cellSize);
+        background: grey;
+        border: solid var(--cellBorderSize) black; }
+        .container .containerTetris table tr td .cubeContainer {
+          position: relative;
+          width: var(--cellSize);
+          height: var(--cellSize); }
+          .container .containerTetris table tr td .cubeContainer div {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: var(--cellSize);
+            height: var(--cellSize);
+            border: solid white 1px; }
+          .container .containerTetris table tr td .cubeContainer .frontFace {
+            transform: translateZ(var(--cellSize)); }
+          .container .containerTetris table tr td .cubeContainer .leftFace {
+            transform-origin: left;
+            transform: rotateY(-90deg); }
+          .container .containerTetris table tr td .cubeContainer .rightFace {
+            transform-origin: right;
+            transform: rotateY(90deg); }
+          .container .containerTetris table tr td .cubeContainer .upFace {
+            transform-origin: top;
+            transform: rotateX(90deg); }
+          .container .containerTetris table tr td .cubeContainer .downFace {
+            transform-origin: bottom;
+            transform: rotateX(-90deg); }
+
+/*# sourceMappingURL=main.css.map */
