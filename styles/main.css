@@ -4,10 +4,7 @@ body {
 
 .container {
   width: 100vw;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center; }
+  height: 100vh; }
   .container .containerTetris {
     --cellSize: 30px;
     --cellBorderSize: 1px;
@@ -15,6 +12,7 @@ body {
     height: 100vh;
     display: flex;
     justify-content: center;
+    align-items: center;
     perspective: 800px; }
     .container .containerTetris * {
       transform-style: preserve-3d; }
@@ -25,7 +23,7 @@ body {
         padding: 0;
         width: var(--cellSize);
         height: var(--cellSize);
-        background: grey;
+        background: #FFDCE4;
         border: solid var(--cellBorderSize) black; }
         .container .containerTetris table tr td .cubeContainer {
           position: relative;

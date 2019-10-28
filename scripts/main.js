@@ -85,7 +85,7 @@ let tetris = {
 
     lShape : {
         
-        color : '#96CAF7',
+        color : '#F3C6A5',
 
         a : [
             [0, 0, 0, 0],
@@ -112,6 +112,138 @@ let tetris = {
             [0, 0, 1, 1],
             [0, 0, 1, 0],
             [0, 0, 1, 0],
+            [0, 0, 0 ,0]
+        ],
+    },
+
+    jShape : {
+        
+        color : '#F8A3A8',
+
+        a : [
+            [0, 0, 1, 0],
+            [0, 0, 1, 0],
+            [0, 1, 1, 0],
+            [0, 0, 0 ,0]
+        ],
+
+        d : [
+            [0, 0, 0, 0],
+            [0, 1, 0, 0],
+            [0, 1, 1, 1],
+            [0, 0, 0 ,0]
+        ],
+
+        c : [
+            [0, 0, 0, 0],
+            [0, 1, 1, 0],
+            [0, 1, 0, 0],
+            [0, 1, 0 ,0]
+        ],
+
+        b : [
+            [0, 0, 0, 0],
+            [1, 1, 1, 0],
+            [0, 0, 1, 0],
+            [0, 0, 0 ,0]
+        ],
+    },
+
+    zShape : {
+        
+        color : '#F8A3A8',
+
+        a : [
+            [0, 0, 0, 0],
+            [0, 1, 1, 0],
+            [0, 0, 1, 1],
+            [0, 0, 0 ,0]
+        ],
+
+        d : [
+            [0, 0, 0, 0],
+            [0, 0, 1, 0],
+            [0, 1, 1, 0],
+            [0, 1, 0 ,0]
+        ],
+
+        c : [
+            [0, 0, 0, 0],
+            [1, 1, 0, 0],
+            [0, 1, 1, 0],
+            [0, 0, 0 ,0]
+        ],
+
+        b : [
+            [0, 0, 1, 0],
+            [0, 1, 1, 0],
+            [0, 1, 0, 0],
+            [0, 0, 0 ,0]
+        ],
+    },
+
+    sShape : {
+        
+        color : '#9CDCAA',
+
+        a : [
+            [0, 0, 0, 0],
+            [0, 0, 1, 1],
+            [0, 1, 1, 0],
+            [0, 0, 0 ,0]
+        ],
+
+        d : [
+            [0, 0, 0, 0],
+            [0, 1, 0, 0],
+            [0, 1, 1, 0],
+            [0, 0, 1 ,0]
+        ],
+
+        c : [
+            [0, 0, 0, 0],
+            [0, 1, 1, 0],
+            [1, 1, 0, 0],
+            [0, 0, 0 ,0]
+        ],
+
+        b : [
+            [0, 1, 0, 0],
+            [0, 1, 1, 0],
+            [0, 0, 1, 0],
+            [0, 0, 0 ,0]
+        ],
+    },
+
+    oShape : {
+        
+        color : '#E5E1AB',
+
+        a : [
+            [0, 0, 0, 0],
+            [0, 1, 1, 0],
+            [0, 1, 1, 0],
+            [0, 0, 0 ,0]
+        ],
+
+        d : [
+            [0, 0, 0, 0],
+            [0, 1, 1, 0],
+            [0, 1, 1, 0],
+            [0, 0, 0 ,0]
+        ],
+
+        c : [
+            [0, 0, 0, 0],
+            [0, 1, 1, 0],
+            [0, 1, 1, 0],
+            [0, 0, 0 ,0]
+        ],
+
+        b : [
+            [0, 0, 0, 0],
+            [0, 1, 1, 0],
+            [0, 1, 1, 0],
             [0, 0, 0 ,0]
         ],
     },
@@ -144,7 +276,7 @@ let tetris = {
     },
 
     shapeListCreation(){
-        this.shapeList.push(this.tShape, this.iShape, this.lShape)
+        this.shapeList.push(this.tShape, this.iShape, this.lShape, this.jShape, this.zShape, this.sShape, this.oShape)
     },
 
     domCubeCreation : function(x, y, color){
@@ -213,7 +345,7 @@ let tetris = {
         for (let i = 0 + this.actualShapePosY; i < 4 + this.actualShapePosY; i++) {
             for (let j = 0 + this.actualShapePosX; j < 4 + this.actualShapePosX; j++) {
                 if(this.gridMatrix[i][j] == 1){
-                    if((this.gridMatrix[i][j + direction]) === undefined){
+                    if((this.gridMatrix[i][j + direction]) === undefined || (this.gridMatrix[i][j + direction]) === 2){
                         return false
                     }
                 }
