@@ -19,7 +19,7 @@ let tetris = {
 
     tShape : {
         
-        color : '#BFB2F3',
+        color : 'purple',
 
         a : [
             [0, 1, 0, 0],
@@ -52,7 +52,7 @@ let tetris = {
 
     iShape : {
         
-        color : '#96CAF7',
+        color : 'blue',
 
         a : [
             [0, 0, 0, 0],
@@ -61,7 +61,7 @@ let tetris = {
             [0, 0, 0 ,0]
         ],
 
-        d : [
+        b : [
             [0, 0, 1, 0],
             [0, 0, 1, 0],
             [0, 0, 1, 0],
@@ -75,7 +75,7 @@ let tetris = {
             [0, 0, 0 ,0]
         ],
 
-        b : [
+        d : [
             [0, 1, 0, 0],
             [0, 1, 0, 0],
             [0, 1, 0, 0],
@@ -85,40 +85,40 @@ let tetris = {
 
     lShape : {
         
-        color : '#F3C6A5',
+        color : 'orange',
 
         a : [
-            [0, 0, 0, 0],
-            [0, 1, 1, 1],
-            [0, 0, 0, 1],
-            [0, 0, 0 ,0]
-        ],
-
-        d : [
-            [0, 0, 1, 0],
-            [0, 0, 1, 0],
+            [0, 1, 0, 0],
+            [0, 1, 0, 0],
             [0, 1, 1, 0],
             [0, 0, 0 ,0]
         ],
 
-        c : [
-            [0, 1, 0, 0],
-            [0, 1, 1, 1],
+        b : [
             [0, 0, 0, 0],
+            [0, 1, 1, 1],
+            [0, 1, 0, 0],
             [0, 0, 0 ,0]
         ],
 
-        b : [
-            [0, 0, 1, 1],
+        c : [
+            [0, 0, 0, 0],
+            [0, 1, 1, 0],
             [0, 0, 1, 0],
+            [0, 0, 1 ,0]
+        ],
+
+        d : [
+            [0, 0, 0, 0],
             [0, 0, 1, 0],
+            [1, 1, 1, 0],
             [0, 0, 0 ,0]
         ],
     },
 
     jShape : {
         
-        color : '#F8A3A8',
+        color : 'pink',
 
         a : [
             [0, 0, 1, 0],
@@ -127,7 +127,7 @@ let tetris = {
             [0, 0, 0 ,0]
         ],
 
-        d : [
+        b : [
             [0, 0, 0, 0],
             [0, 1, 0, 0],
             [0, 1, 1, 1],
@@ -141,7 +141,7 @@ let tetris = {
             [0, 1, 0 ,0]
         ],
 
-        b : [
+        d : [
             [0, 0, 0, 0],
             [1, 1, 1, 0],
             [0, 0, 1, 0],
@@ -151,7 +151,7 @@ let tetris = {
 
     zShape : {
         
-        color : '#F8A3A8',
+        color : 'red',
 
         a : [
             [0, 0, 0, 0],
@@ -160,7 +160,7 @@ let tetris = {
             [0, 0, 0 ,0]
         ],
 
-        d : [
+        b : [
             [0, 0, 0, 0],
             [0, 0, 1, 0],
             [0, 1, 1, 0],
@@ -174,7 +174,7 @@ let tetris = {
             [0, 0, 0 ,0]
         ],
 
-        b : [
+        d : [
             [0, 0, 1, 0],
             [0, 1, 1, 0],
             [0, 1, 0, 0],
@@ -184,7 +184,7 @@ let tetris = {
 
     sShape : {
         
-        color : '#9CDCAA',
+        color : 'green',
 
         a : [
             [0, 0, 0, 0],
@@ -193,7 +193,7 @@ let tetris = {
             [0, 0, 0 ,0]
         ],
 
-        d : [
+        b : [
             [0, 0, 0, 0],
             [0, 1, 0, 0],
             [0, 1, 1, 0],
@@ -207,7 +207,7 @@ let tetris = {
             [0, 0, 0 ,0]
         ],
 
-        b : [
+        d : [
             [0, 1, 0, 0],
             [0, 1, 1, 0],
             [0, 0, 1, 0],
@@ -217,7 +217,7 @@ let tetris = {
 
     oShape : {
         
-        color : '#E5E1AB',
+        color : 'yellow',
 
         a : [
             [0, 0, 0, 0],
@@ -226,7 +226,7 @@ let tetris = {
             [0, 0, 0 ,0]
         ],
 
-        d : [
+        b : [
             [0, 0, 0, 0],
             [0, 1, 1, 0],
             [0, 1, 1, 0],
@@ -240,7 +240,7 @@ let tetris = {
             [0, 0, 0 ,0]
         ],
 
-        b : [
+        d : [
             [0, 0, 0, 0],
             [0, 1, 1, 0],
             [0, 1, 1, 0],
@@ -249,6 +249,25 @@ let tetris = {
     },
 
     shapeList : [],
+
+    domTableCreation(){
+        let table = document.querySelector('.containerTetris_grid')
+        for (let i = 0; i < this.height; i++) {
+            let row = document.createElement('tr')
+            table.appendChild(row)
+            for (let j = 0; j < this.width; j++) {
+                let cell = document.createElement('td')
+                row.appendChild(cell)
+                this.domCubeCreation(cell, "purple")
+                this.domCubeCreation(cell, "blue")
+                this.domCubeCreation(cell, "orange")
+                this.domCubeCreation(cell, "red")
+                this.domCubeCreation(cell, "green")
+                this.domCubeCreation(cell, "yellow")
+                this.domCubeCreation(cell, "pink")
+            }
+        }
+    },
 
     domMatrixCreation(){
         let u = 0
@@ -279,43 +298,42 @@ let tetris = {
         this.shapeList.push(this.tShape, this.iShape, this.lShape, this.jShape, this.zShape, this.sShape, this.oShape)
     },
 
-    domCubeCreation : function(x, y, color){
-        console.log(color)
-
+    domCubeApparition : function(x, y, color){
+        
         this.gridMatrix[y][x] = 1
+        let cube = this.domMatrix[y][x].querySelector(`.${color}`)
+        cube.style.opacity = 1
+    },
+
+    domCubeCreation : function(cell, colorClasseName){
 
         let container = document.createElement('div')
         container.classList.add('cubeContainer')
-        this.domMatrix[y][x].appendChild(container)
+        container.classList.add(colorClasseName)
+        cell.appendChild(container)
 
         let frontFace = document.createElement('div')
         frontFace.classList.add('frontFace')
-        frontFace.style.background = color
         container.appendChild(frontFace)
 
         let backFace = document.createElement('div')
         backFace.classList.add('backFace')
-        backFace.style.background = color
         container.appendChild(backFace)
 
         let leftFace = document.createElement('div')
         leftFace.classList.add('leftFace')
-        leftFace.style.background = color
         container.appendChild(leftFace)
 
         let rightFace = document.createElement('div')
         rightFace.classList.add('rightFace')
-        rightFace.style.background = color
         container.appendChild(rightFace)
 
         let upFace = document.createElement('div')
         upFace.classList.add('upFace')
-        upFace.style.background = color
         container.appendChild(upFace)
 
         let downFace = document.createElement('div')
         downFace.classList.add('downFace')
-        downFace.style.background = color
         container.appendChild(downFace)
     },
 
@@ -324,7 +342,8 @@ let tetris = {
             for (let j = 0; j < this.width; j++) {
                 if(this.gridMatrix[i][j] == 1){
                     this.gridMatrix[i][j] = 0
-                    this.domMatrix[i][j].innerHTML = ''
+                    let cube = this.domMatrix[i][j].querySelector(`.${this.actualShapeColor}`)
+                    cube.style.opacity = 0
                 }
             }
         }
@@ -333,7 +352,7 @@ let tetris = {
     loseTest(shape, shapeState){
         for (let i = 0; i < 4; i++) {
             for (let j = 3; j < 7; j++) {
-                if(shape[shapeState][i][j - 3] == 1 && this.gridMatrix[i][j] == 1){
+                if(shape[shapeState][i][j - 3] == 1 && this.gridMatrix[i][j] == 2){
                     return false
                 }
             }
@@ -398,6 +417,9 @@ let tetris = {
                     tetris.shapeDisplay(tetris.actualShape, tetris.shapeTab[tetris.actualShapeState])
                 }
                 break;
+            case 'Space' :
+                tetris.start()
+                break;
             default:
         }
     },
@@ -418,6 +440,7 @@ let tetris = {
 
     randomShape(){
         this.actualShape = this.nextShape
+        this.actualShapeColor = this.actualShape['color']
         this.nextShape = this.shapeList[Math.floor(Math.random() * this.shapeList.length)]
     },
 
@@ -426,7 +449,7 @@ let tetris = {
             for (let j = 0 + this.actualShapePosX; j < 4 + this.actualShapePosX; j++) {
                 if(shape[shapeState][i - this.actualShapePosY][j - this.actualShapePosX] == 1){
                     this.gridMatrix[i][j] = 1
-                    this.domCubeCreation(j, i, shape['color'])
+                    this.domCubeApparition(j, i, shape['color'])
                 }
             }
         }
@@ -454,6 +477,7 @@ let tetris = {
             this.randomShape()
             this.actualShapePosX = 3
             this.actualShapePosY = 0
+            tetris.loseTest(tetris.actualShape, tetris.actualShapeState)
         }
     },
 
@@ -474,8 +498,7 @@ let tetris = {
 document.addEventListener('keydown', tetris.keyboardControlsTouchDown)
 document.addEventListener('keyup', tetris.keyboardControlsTouchUp)
 
+tetris.domTableCreation()
 tetris.domMatrixCreation()
 tetris.binaryMatrixCreation()
 tetris.shapeListCreation()
-
-tetris.start()

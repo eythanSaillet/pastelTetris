@@ -1,6 +1,21 @@
 body{
     margin:0;
     padding:0;
+    background-color: #191919;
+}
+
+.landingOverlay{
+    width: 100vw;
+    height: 100vh;
+    background: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .landingOverlay_titleContainer{
+        width: 50vw;
+        height: 50vh;
+
+    }
 }
 
 .container{
@@ -8,7 +23,7 @@ body{
     height: 100vh;
     .containerTetris{
         --cellSize: 30px;
-        --cellBorderSize: 1px;
+        --cellBorderSize: 0.5px;
         width: 100vw;
         height: 100vh;
         display: flex;
@@ -19,26 +34,28 @@ body{
             transform-style: preserve-3d;
         }
         table{
-            transform: rotatex(0deg);
             border-collapse: collapse;
+            animation: gridRotate 20s ease-in-out 1s infinite alternate;
             tr{
                 td{
                     padding: 0;
                     width: var(--cellSize);
                     height: var(--cellSize);
-                    background: #FFDCE4;
-                    border: solid var(--cellBorderSize) black;
+                    // background: #FFDCE4;
+                    border: solid var(--cellBorderSize) rgba(255, 255, 255, 0.5);
                     .cubeContainer{
-                        position: relative;
+                        position: absolute;
+                        top: 0;
+                        left: 0;
                         width: var(--cellSize);
                         height: var(--cellSize);
+                        opacity: 0;
                         div{
                             position: absolute;
                             top: 0;
                             left: 0;
-                            width: var(--cellSize);
-                            height: var(--cellSize);
-                            // background: red;
+                            width: calc(var(--cellSize) - 1px);
+                            height: calc(var(--cellSize) - 1px);
                             border: solid white 1px;
                         }
                         .frontFace{
@@ -61,8 +78,41 @@ body{
                             transform: rotateX(-90deg);
                         }
                     }
+                    .purple div{
+                        background-color: #BFB2F3;
+                    }
+                    .blue div{
+                        background-color: #C5F1FF;
+                    }
+                    .orange div{
+                        background-color: #F3C6A5;
+                    }
+                    .red div{
+                        background-color: #F8A3A8;
+                    }
+                    .green div{
+                        background-color: #9CDCAA;
+                    }
+                    .yellow div{
+                        background-color: #F7EEA1;
+                    }
+                    .pink div{
+                        background-color: #F6D7E8;
+                    }
                 }
             }
         }
+    }
+}
+
+@keyframes gridRotate {
+    0%{
+        transform: rotateY(0deg);
+    }
+    50%{
+        transform: rotateY(-20deg);
+    }
+    100%{
+        transform: rotateY(20deg);
     }
 }
