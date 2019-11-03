@@ -187,6 +187,24 @@ body {
         border: solid 1px white; }
         .shapeMenuOverlay .shapeMenuOverlay_customPieces .shapeMenuOverlay_customPieces_drawings .backButton:hover {
           background-color: rgba(255, 255, 255, 0.5); }
+        .shapeMenuOverlay .shapeMenuOverlay_customPieces .shapeMenuOverlay_customPieces_drawings .backButton .arrow {
+          position: relative; }
+          .shapeMenuOverlay .shapeMenuOverlay_customPieces .shapeMenuOverlay_customPieces_drawings .backButton .arrow .arrowA {
+            width: 12px;
+            height: 12px;
+            border-top: solid white 3px;
+            border-left: solid white 3px;
+            transform: rotateZ(-45deg);
+            position: absolute;
+            top: -8px;
+            left: -15px; }
+          .shapeMenuOverlay .shapeMenuOverlay_customPieces .shapeMenuOverlay_customPieces_drawings .backButton .arrow .arrowB {
+            width: 30px;
+            height: 3px;
+            background-color: #fff;
+            position: absolute;
+            top: -2px;
+            right: -16px; }
       .shapeMenuOverlay .shapeMenuOverlay_customPieces .shapeMenuOverlay_customPieces_drawings table {
         border-collapse: collapse; }
         .shapeMenuOverlay .shapeMenuOverlay_customPieces .shapeMenuOverlay_customPieces_drawings table tr td {
