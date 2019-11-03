@@ -4,7 +4,7 @@ let tetris = {
     domMatrix : [],
     gridMatrix : [],
     gridRow : [],
-    state : 0, // 0 paused // 1 start // 2 game over //
+    state : -1, // -1 menu // 0 not started // 1 started // 2 paused
     level : 1,
     intervalDelay : 750,
     intervalDelayBasic : 750,
@@ -251,12 +251,15 @@ let tetris = {
 
     shapeList : [],
 
-    domTableCreation(){
+    domTableCreation()
+    {
         let table = document.querySelector('.containerTetris_grid')
-        for (let i = 0; i < this.height; i++) {
+        for (let i = 0; i < this.height; i++)
+        {
             let row = document.createElement('tr')
             table.appendChild(row)
-            for (let j = 0; j < this.width; j++) {
+            for (let j = 0; j < this.width; j++)
+            {
                 let cell = document.createElement('td')
                 row.appendChild(cell)
                 this.domCubeCreation(cell, "purple")
@@ -270,49 +273,59 @@ let tetris = {
         }
     },
 
-    domMatrixCreation(){
+    domMatrixCreation()
+    {
         let u = 0
         this.domMatrix = []
-        for (let i = 0; i < this.height; i++) {
+        for (let i = 0; i < this.height; i++)
+        {
             this.domMatrix.push([])
-            for (let j = 0; j < this.width; j++) {
+            for (let j = 0; j < this.width; j++)
+            {
                 this.domMatrix[i].push(document.querySelectorAll('.containerTetris_grid td')[u])
                 u += 1
             }
         }
         this.gridRow = []
-        for (let i = 0; i < this.width; i++) {
+        for (let i = 0; i < this.width; i++)
+        {
             this.gridRow.push(0)
         }
     },
 
-    binaryMatrixCreation(){
-        for (let i = 0; i < this.height + 3; i++) {
+    binaryMatrixCreation()
+    {
+        for (let i = 0; i < this.height + 3; i++)
+        {
             this.gridMatrix.push([])
-            for (let j = 0; j < this.width; j++) {
-                if(i < this.height){
+            for (let j = 0; j < this.width; j++)
+            {
+                if(i < this.height)
+                {
                     this.gridMatrix[i].push(0)
                 }
-                else{
+                else
+                {
                     this.gridMatrix[i].push(2)
                 }
             }
         }
     },
 
-    shapeListCreation(){
+    shapeListCreation()
+    {
         this.shapeList.push(this.tShape, this.iShape, this.lShape, this.jShape, this.zShape, this.sShape, this.oShape)
     },
 
-    domCubeApparition : function(x, y, color){
-        
+    domCubeApparition : function(x, y, color)
+    {
         this.gridMatrix[y][x] = 1
         let cube = this.domMatrix[y][x].querySelector(`.${color}`)
         cube.style.opacity = 1
     },
 
-    domCubeCreation : function(cell, colorClasseName){
-
+    domCubeCreation : function(cell, colorClasseName)
+    {
         let container = document.createElement('div')
         container.classList.add('cubeContainer')
         container.classList.add(colorClasseName)
@@ -343,10 +356,14 @@ let tetris = {
         container.appendChild(downFace)
     },
 
-    gridClear(){
-        for (let i = 0; i < this.height; i++) {
-            for (let j = 0; j < this.width; j++) {
-                if(this.gridMatrix[i][j] == 1){
+    gridClear()
+    {
+        for (let i = 0; i < this.height; i++)
+        {
+            for (let j = 0; j < this.width; j++)
+            {
+                if(this.gridMatrix[i][j] == 1)
+                {
                     this.gridMatrix[i][j] = 0
                     let cube = this.domMatrix[i][j].querySelector(`.${this.actualShapeColor}`)
                     cube.style.opacity = 0
@@ -355,10 +372,14 @@ let tetris = {
         }
     },
 
-    loseTest(shape, shapeState){
-        for (let i = 0; i < 4; i++) {
-            for (let j = 3; j < 7; j++) {
-                if(shape[shapeState][i][j - 3] == 1 && this.gridMatrix[i][j] == 2){
+    loseTest(shape, shapeState)
+    {
+        for (let i = 0; i < 4; i++)
+        {
+            for (let j = 3; j < 7; j++)
+            {
+                if(shape[shapeState][i][j - 3] == 1 && this.gridMatrix[i][j] == 2)
+                {
                     return false
                 }
             }
@@ -366,11 +387,16 @@ let tetris = {
         return true
     },
 
-    wallTest(direction){
-        for (let i = 0 + this.actualShapePosY; i < 4 + this.actualShapePosY; i++) {
-            for (let j = 0 + this.actualShapePosX; j < 4 + this.actualShapePosX; j++) {
-                if(this.gridMatrix[i][j] == 1){
-                    if((this.gridMatrix[i][j + direction]) === undefined || (this.gridMatrix[i][j + direction]) === 2){
+    wallTest(direction)
+    {
+        for (let i = 0 + this.actualShapePosY; i < 4 + this.actualShapePosY; i++)
+        {
+            for (let j = 0 + this.actualShapePosX; j < 4 + this.actualShapePosX; j++)
+            {
+                if(this.gridMatrix[i][j] == 1)
+                {
+                    if((this.gridMatrix[i][j + direction]) === undefined || (this.gridMatrix[i][j + direction]) === 2)
+                    {
                         return false
                     }
                 }
@@ -379,11 +405,16 @@ let tetris = {
         return true
     },
 
-    groundTest(){
-        for (let i = 0 + this.actualShapePosY; i < 4 + this.actualShapePosY; i++) {
-            for (let j = 0 + this.actualShapePosX; j < 4 + this.actualShapePosX; j++) {
-                if(this.gridMatrix[i][j] == 1){
-                    if(this.gridMatrix[i + 1][j] == 2 ){
+    groundTest()
+    {
+        for (let i = 0 + this.actualShapePosY; i < 4 + this.actualShapePosY; i++)
+        {
+            for (let j = 0 + this.actualShapePosX; j < 4 + this.actualShapePosX; j++)
+            {
+                if(this.gridMatrix[i][j] == 1)
+                {
+                    if(this.gridMatrix[i + 1][j] == 2 )
+                    {
                         return false
                     }
                 }
@@ -392,29 +423,36 @@ let tetris = {
         return true
     },
 
-    fullLineTest(){
+    fullLineTest()
+    {
         let u = 0
-        for (let i = 0; i < this.height; i++) {
-            for (let j = 0; j < this.width; j++) {
-                if(this.gridMatrix[i][j] == 2){
+        for (let i = 0; i < this.height; i++)
+        {
+            for (let j = 0; j < this.width; j++)
+            {
+                if(this.gridMatrix[i][j] == 2)
+                {
                     u++
                 }
             }
-            if(u == this.width){
+            if(u == this.width)
+            {
                 this.fullLineDestroy(i)
             }
             u = 0
         }
     },
 
-    fullLineDestroy(lineHeight){
+    fullLineDestroy(lineHeight)
+    {
         let table = document.querySelector('.containerTetris_grid')
         let tableRows = document.querySelectorAll('.containerTetris_grid tr')
         fullLine = tableRows[lineHeight]
         upLine = tableRows[lineHeight - 1]
         table.replaceChild(upLine, fullLine)
         let domRow = document.createElement('tr')
-        for (let i = 0; i < this.width; i++) {
+        for (let i = 0; i < this.width; i++)
+        {
             let domRowCell = document.createElement('td')
             domRow.appendChild(domRowCell)
             this.domCubeCreation(domRowCell, "purple")
@@ -430,72 +468,92 @@ let tetris = {
         this.gridMatrix.splice(lineHeight, 1)
         this.gridMatrix.unshift(this.gridRow)
         this.domMatrixCreation()
-        console.log(this.gridMatrix)
-        console.log(this.domMatrix)
     },
 
-    keyboardControlsTouchDown : event => {
-        switch (event.code) {
+    keyboardControlsTouchDown : event =>
+    {
+        switch (event.code)
+        {
             case 'KeyW' :
-                if(tetris.actualShapeState == 3){
-                    tetris.gridClear()
-                    tetris.actualShapeState = 0
-                    tetris.shapeDisplay(tetris.actualShape, tetris.shapeTab[tetris.actualShapeState])
-                }
-                else{
-                    tetris.gridClear()
-                    tetris.actualShapeState++
-                    tetris.shapeDisplay(tetris.actualShape, tetris.shapeTab[tetris.actualShapeState])
+                if(tetris.state == 1)
+                {
+                    if(tetris.actualShapeState == 3)
+                    {
+                        tetris.gridClear()
+                        tetris.actualShapeState = 0
+                        tetris.shapeDisplay(tetris.actualShape, tetris.shapeTab[tetris.actualShapeState])
+                    }
+                    else
+                    {
+                        tetris.gridClear()
+                        tetris.actualShapeState++
+                        tetris.shapeDisplay(tetris.actualShape, tetris.shapeTab[tetris.actualShapeState])
+                    }
                 }
                 break;
             case 'KeyA' :
-                if(tetris.wallTest(-1)){
-                    tetris.actualShapePosX--
-                    tetris.gridClear()
-                    tetris.shapeDisplay(tetris.actualShape, tetris.shapeTab[tetris.actualShapeState])
+                if(tetris.state == 1)
+                {
+                    if(tetris.wallTest(-1))
+                    {
+                        tetris.actualShapePosX--
+                        tetris.gridClear()
+                        tetris.shapeDisplay(tetris.actualShape, tetris.shapeTab[tetris.actualShapeState])
+                    }
                 }
                 break
             case 'KeyS' :
-                tetris.falling()
+                if(tetris.state == 1)
+                {
+                    tetris.falling()
+                }
                 break;
             case 'KeyD' :
-                if(tetris.wallTest(1)){
-                    tetris.actualShapePosX++
-                    tetris.gridClear()
-                    tetris.shapeDisplay(tetris.actualShape, tetris.shapeTab[tetris.actualShapeState])
+                if(tetris.state == 1)
+                {
+                    if(tetris.wallTest(1))
+                    {
+                        tetris.actualShapePosX++
+                        tetris.gridClear()
+                        tetris.shapeDisplay(tetris.actualShape, tetris.shapeTab[tetris.actualShapeState])
+                    }
                 }
                 break;
             case 'Space' :
-                tetris.start()
+                if(tetris.state == 0)
+                {
+                    tetris.start()
+                }
+                else if(tetris.state == 1)
+                {
+                    window.clearInterval(tetris.interval)
+                    tetris.state = 2
+                }
+                else if(tetris.state == 2)
+                {
+                    tetris.settingFallingInterval()
+                    tetris.state = 1
+                }
                 break;
             default:
         }
     },
 
-    keyboardControlsTouchUp : event => {
-        switch (event.code) {
-            case 'KeyW' :
-                break;
-            case 'KeyA' :
-                break
-            case 'KeyS' :
-                break;
-            case 'KeyD' :
-                break;
-            default:
-        }
-    },
-
-    randomShape(){
+    randomShape()
+    {
         this.actualShape = this.nextShape
         this.actualShapeColor = this.actualShape['color']
         this.nextShape = this.shapeList[Math.floor(Math.random() * this.shapeList.length)]
     },
 
-    shapeDisplay(shape, shapeState){
-        for (let i = 0 + this.actualShapePosY; i < 4 + this.actualShapePosY; i++) {
-            for (let j = 0 + this.actualShapePosX; j < 4 + this.actualShapePosX; j++) {
-                if(shape[shapeState][i - this.actualShapePosY][j - this.actualShapePosX] == 1){
+    shapeDisplay(shape, shapeState)
+    {
+        for (let i = 0 + this.actualShapePosY; i < 4 + this.actualShapePosY; i++)
+        {
+            for (let j = 0 + this.actualShapePosX; j < 4 + this.actualShapePosX; j++)
+            {
+                if(shape[shapeState][i - this.actualShapePosY][j - this.actualShapePosX] == 1)
+                {
                     this.gridMatrix[i][j] = 1
                     this.domCubeApparition(j, i, shape['color'])
                 }
@@ -503,23 +561,30 @@ let tetris = {
         }
     },
 
-    shapeFreezing(){
-        for (let i = 0 + this.actualShapePosY - 1; i < 4 + this.actualShapePosY; i++) {
-            for (let j = 0 + this.actualShapePosX; j < 4 + this.actualShapePosX; j++) {
-                if(this.gridMatrix[i][j] == 1){
+    shapeFreezing()
+    {
+        for (let i = 0 + this.actualShapePosY - 1; i < 4 + this.actualShapePosY; i++)
+        {
+            for (let j = 0 + this.actualShapePosX; j < 4 + this.actualShapePosX; j++)
+            {
+                if(this.gridMatrix[i][j] == 1)
+                {
                     this.gridMatrix[i][j] = 2
                 }
             }
         }
     },
 
-    falling(){
-        if(this.groundTest()){
+    falling()
+    {
+        if(this.groundTest())
+        {
             this.actualShapePosY += 1
             this.gridClear()
             this.shapeDisplay(this.actualShape, this.shapeTab[this.actualShapeState])
         }
-        else{
+        else
+        {
             this.shapeFreezing(this.actualShape, this.shapeTab[this.actualShapeState])
             this.actualShape = this.nextShape
             this.randomShape()
@@ -530,17 +595,19 @@ let tetris = {
         }
     },
 
-    settingFallingInterval(){
-        this.interval = window.setInterval( () => {
+    settingFallingInterval()
+    {
+        this.interval = window.setInterval( () =>
+        {
             this.falling()
         },this.intervalDelay)
     }, 
 
-    start(){
+    start()
+    {
         tetris.randomShape()
         tetris.randomShape()
         tetris.settingFallingInterval()
-        console.log(this.gridMatrix)
     },
 
 }

@@ -24,7 +24,7 @@ body{
     width: 100vw;
     height: 100vh;
     background-color: #0C0C0C;
-    display: none;
+    display: flex;
     justify-content: center;
     align-items: center;
     position: absolute;
@@ -125,7 +125,7 @@ body{
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 15;
+    z-index: 5;
     font-family: 'arcade';
     font-size: 2.3rem;
     letter-spacing: 0.5rem;
@@ -143,9 +143,13 @@ body{
         width: 40vw;
         height: 90vh;
         .shapeMenuOverlay_basicPieces_pieces{
-            background-color: red;
             width: 35vw;
             height: 70vh;
+            svg{
+                &:hover{
+                    filter: drop-shadow(0 0 0.5rem rgba(255, 255, 255, 0.5))
+                }
+            }
         }
     }
     .shapeMenuOverlay_line{
@@ -235,6 +239,7 @@ body{
                         width: 4vw;
                         height: 4vw;
                         border: solid 1px white;
+                        padding: 0;
                         div{
                             width: 100%;
                             height: 100%;
