@@ -386,6 +386,29 @@ let tetris = {
         return true
     },
 
+    fullLineTest(){
+        let u = 0
+        for (let i = 0; i < this.height; i++) {
+            for (let j = 0; j < this.width; j++) {
+                if(this.gridMatrix[i][j] == 2){
+                    u++
+                }
+            }
+            if(u == this.width){
+                this.fullLineDestroy(i)
+            }
+            u = 0
+        }
+    },
+
+    fullLineDestroy(lineHeight){
+        lineDom = []
+        for (let i = 0; i < this.width; i++) {
+            lineDom.push(this.domMatrix[lineHeight][i])
+        }
+        console.log(lineDom)
+    },
+
     keyboardControlsTouchDown : event => {
         switch (event.code) {
             case 'KeyW' :
@@ -467,9 +490,10 @@ let tetris = {
 
     falling(){
         if(this.groundTest()){
+            this.actualShapePosY += 1
             this.gridClear()
             this.shapeDisplay(this.actualShape, this.shapeTab[this.actualShapeState])
-            this.actualShapePosY += 1
+            this.fullLineTest()
         }
         else{
             this.shapeFreezing(this.actualShape, this.shapeTab[this.actualShapeState])
@@ -477,7 +501,7 @@ let tetris = {
             this.randomShape()
             this.actualShapePosX = 3
             this.actualShapePosY = 0
-            tetris.loseTest(tetris.actualShape, tetris.actualShapeState)
+            // this.loseTest(tetris.actualShape, tetris.actualShapeState)
         }
     },
 
