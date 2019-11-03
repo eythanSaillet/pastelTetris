@@ -1,7 +1,14 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #0C0C0C; }
+  background-color: #0C0C0C;
+  --colors1: #BFB2F3;
+  --colors2: #C5F1FF;
+  --colors3: #F3C6A5;
+  --colors4: #F8A3A8;
+  --colors5: #9CDCAA;
+  --colors6: #F7EEA1;
+  --colors7: #F6D7E8; }
 
 @font-face {
   font-family: "arcade";
@@ -13,7 +20,7 @@ body {
   width: 100vw;
   height: 100vh;
   background-color: #0C0C0C;
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   position: absolute;
@@ -32,7 +39,14 @@ body {
     cursor: pointer; }
     .landingOverlay .landingOverlay_titleContainer .landingOverlay_titleContainer_tetris {
       font-size: 120px;
-      font-family: arcade; }
+      font-family: arcade;
+      margin-block-start: 0;
+      margin-block-end: 0;
+      margin-inline-start: 0px;
+      margin-inline-end: 0px;
+      font-weight: normal; }
+      .landingOverlay .landingOverlay_titleContainer .landingOverlay_titleContainer_tetris h1 {
+        font-style: normal; }
       .landingOverlay .landingOverlay_titleContainer .landingOverlay_titleContainer_tetris span {
         display: inline-block;
         cursor: pointer; }
@@ -60,7 +74,12 @@ body {
       position: absolute;
       font-size: 100px;
       font-family: pastel;
-      transform: translate(225px, 55px) rotateZ(-15deg); }
+      transform: translate(225px, 55px) rotateZ(-15deg);
+      margin-block-start: 0;
+      margin-block-end: 0;
+      margin-inline-start: 0px;
+      margin-inline-end: 0px;
+      font-weight: normal; }
       .landingOverlay .landingOverlay_titleContainer .landingOverlay_titleContainer_pastel span:nth-child(1) {
         animation: pastelTitle 3.5s linear 1s both; }
       .landingOverlay .landingOverlay_titleContainer .landingOverlay_titleContainer_pastel span:nth-child(2) {
@@ -73,6 +92,118 @@ body {
         animation: pastelTitle 3.5s linear 1.4s both; }
       .landingOverlay .landingOverlay_titleContainer .landingOverlay_titleContainer_pastel span:nth-child(6) {
         animation: pastelTitle 3.5s linear 1.5s both; }
+
+.shapeMenuOverlay {
+  width: 100vw;
+  height: 100vh;
+  background-color: #0C0C0C;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 15;
+  font-family: 'arcade';
+  font-size: 2.3rem;
+  letter-spacing: 0.5rem;
+  color: white; }
+  .shapeMenuOverlay h3 {
+    margin: 0; }
+  .shapeMenuOverlay div {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column; }
+  .shapeMenuOverlay .shapeMenuOverlay_basicPieces {
+    width: 40vw;
+    height: 90vh; }
+    .shapeMenuOverlay .shapeMenuOverlay_basicPieces .shapeMenuOverlay_basicPieces_pieces {
+      background-color: red;
+      width: 35vw;
+      height: 70vh; }
+  .shapeMenuOverlay .shapeMenuOverlay_line {
+    width: 1px;
+    height: 90vh;
+    background-color: white; }
+  .shapeMenuOverlay .shapeMenuOverlay_customPieces {
+    width: 40vw;
+    height: 90vh;
+    text-align: center; }
+    .shapeMenuOverlay .shapeMenuOverlay_customPieces .tick {
+      position: relative;
+      top: -18px; }
+      .shapeMenuOverlay .shapeMenuOverlay_customPieces .tick .tickA {
+        position: absolute;
+        top: 18px;
+        right: -23px;
+        width: 35px;
+        height: 3px;
+        background-color: black;
+        transform: rotateZ(-45deg); }
+      .shapeMenuOverlay .shapeMenuOverlay_customPieces .tick .tickB {
+        position: absolute;
+        top: 24px;
+        left: -20px;
+        width: 17px;
+        height: 3px;
+        background-color: black;
+        transform: rotateZ(45deg); }
+    .shapeMenuOverlay .shapeMenuOverlay_customPieces .shapeMenuOverlay_customPieces_colors {
+      width: 40vw;
+      height: 25vh; }
+      .shapeMenuOverlay .shapeMenuOverlay_customPieces .shapeMenuOverlay_customPieces_colors > div {
+        display: flex;
+        flex-direction: row; }
+        .shapeMenuOverlay .shapeMenuOverlay_customPieces .shapeMenuOverlay_customPieces_colors > div > div:not(.tick) {
+          width: 4vw;
+          height: 4vw;
+          border: solid 1px white;
+          margin-left: 2vw;
+          margin-right: 2vw; }
+        .shapeMenuOverlay .shapeMenuOverlay_customPieces .shapeMenuOverlay_customPieces_colors > div .colors1 {
+          background-color: var(--colors1); }
+        .shapeMenuOverlay .shapeMenuOverlay_customPieces .shapeMenuOverlay_customPieces_colors > div .colors2 {
+          background-color: var(--colors2); }
+        .shapeMenuOverlay .shapeMenuOverlay_customPieces .shapeMenuOverlay_customPieces_colors > div .colors3 {
+          background-color: var(--colors3); }
+        .shapeMenuOverlay .shapeMenuOverlay_customPieces .shapeMenuOverlay_customPieces_colors > div .colors4 {
+          background-color: var(--colors4); }
+        .shapeMenuOverlay .shapeMenuOverlay_customPieces .shapeMenuOverlay_customPieces_colors > div .colors5 {
+          background-color: var(--colors5); }
+        .shapeMenuOverlay .shapeMenuOverlay_customPieces .shapeMenuOverlay_customPieces_colors > div .colors6 {
+          background-color: var(--colors6); }
+        .shapeMenuOverlay .shapeMenuOverlay_customPieces .shapeMenuOverlay_customPieces_colors > div .colors7 {
+          background-color: var(--colors7); }
+    .shapeMenuOverlay .shapeMenuOverlay_customPieces .shapeMenuOverlay_customPieces_drawings {
+      width: 40vw;
+      height: 42vh;
+      display: flex;
+      flex-direction: row; }
+      .shapeMenuOverlay .shapeMenuOverlay_customPieces .shapeMenuOverlay_customPieces_drawings .backButton {
+        width: 4vw;
+        height: 4vw;
+        border: solid 1px white; }
+        .shapeMenuOverlay .shapeMenuOverlay_customPieces .shapeMenuOverlay_customPieces_drawings .backButton:hover {
+          background-color: rgba(255, 255, 255, 0.5); }
+      .shapeMenuOverlay .shapeMenuOverlay_customPieces .shapeMenuOverlay_customPieces_drawings table {
+        border-collapse: collapse; }
+        .shapeMenuOverlay .shapeMenuOverlay_customPieces .shapeMenuOverlay_customPieces_drawings table tr td {
+          width: 4vw;
+          height: 4vw;
+          border: solid 1px white; }
+          .shapeMenuOverlay .shapeMenuOverlay_customPieces .shapeMenuOverlay_customPieces_drawings table tr td div {
+            width: 100%;
+            height: 100%; }
+      .shapeMenuOverlay .shapeMenuOverlay_customPieces .shapeMenuOverlay_customPieces_drawings .nextButton {
+        width: 4vw;
+        height: 4vw;
+        border: solid 1px white;
+        position: relative; }
+        .shapeMenuOverlay .shapeMenuOverlay_customPieces .shapeMenuOverlay_customPieces_drawings .nextButton:hover {
+          background-color: rgba(255, 255, 255, 0.5); }
+        .shapeMenuOverlay .shapeMenuOverlay_customPieces .shapeMenuOverlay_customPieces_drawings .nextButton .tick div {
+          background-color: white; }
 
 .container {
   width: 100vw;
@@ -125,19 +256,19 @@ body {
             transform-origin: bottom;
             transform: rotateX(-90deg); }
         .container .containerTetris table tr td .purple div {
-          background-color: #BFB2F3; }
+          background-color: var(--colors1); }
         .container .containerTetris table tr td .blue div {
-          background-color: #C5F1FF; }
+          background-color: var(--colors2); }
         .container .containerTetris table tr td .orange div {
-          background-color: #F3C6A5; }
+          background-color: var(--colors3); }
         .container .containerTetris table tr td .red div {
-          background-color: #F8A3A8; }
+          background-color: var(--colors4); }
         .container .containerTetris table tr td .green div {
-          background-color: #9CDCAA; }
+          background-color: var(--colors5); }
         .container .containerTetris table tr td .yellow div {
-          background-color: #F7EEA1; }
+          background-color: var(--colors6); }
         .container .containerTetris table tr td .pink div {
-          background-color: #F6D7E8; }
+          background-color: var(--colors7); }
 
 @keyframes gridRotate {
   0% {
