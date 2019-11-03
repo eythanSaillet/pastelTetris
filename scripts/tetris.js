@@ -262,13 +262,13 @@ let tetris = {
             {
                 let cell = document.createElement('td')
                 row.appendChild(cell)
-                this.domCubeCreation(cell, "purple")
-                this.domCubeCreation(cell, "blue")
-                this.domCubeCreation(cell, "orange")
-                this.domCubeCreation(cell, "red")
-                this.domCubeCreation(cell, "green")
-                this.domCubeCreation(cell, "yellow")
-                this.domCubeCreation(cell, "pink")
+                this.domCubeCreation(cell, 'purple')
+                this.domCubeCreation(cell, 'blue')
+                this.domCubeCreation(cell, 'orange')
+                this.domCubeCreation(cell, 'red')
+                this.domCubeCreation(cell, 'green')
+                this.domCubeCreation(cell, 'yellow')
+                this.domCubeCreation(cell, 'pink')
             }
         }
     },
@@ -455,13 +455,13 @@ let tetris = {
         {
             let domRowCell = document.createElement('td')
             domRow.appendChild(domRowCell)
-            this.domCubeCreation(domRowCell, "purple")
-            this.domCubeCreation(domRowCell, "blue")
-            this.domCubeCreation(domRowCell, "orange")
-            this.domCubeCreation(domRowCell, "red")
-            this.domCubeCreation(domRowCell, "green")
-            this.domCubeCreation(domRowCell, "yellow")
-            this.domCubeCreation(domRowCell, "pink")
+            this.domCubeCreation(domRowCell, 'purple')
+            this.domCubeCreation(domRowCell, 'blue')
+            this.domCubeCreation(domRowCell, 'orange')
+            this.domCubeCreation(domRowCell, 'red')
+            this.domCubeCreation(domRowCell, 'green')
+            this.domCubeCreation(domRowCell, 'yellow')
+            this.domCubeCreation(domRowCell, 'pink')
         }
         let firstRow = document.querySelector('.containerTetris_grid tr:nth-child(1)')
         table.insertBefore(domRow, firstRow)

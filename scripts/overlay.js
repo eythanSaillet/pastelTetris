@@ -1,3 +1,14 @@
+class Shape 
+{
+    constructor(color, matrixA, matrixB, matrixC, matrixD) {
+      this.color = color
+      this.a = matrixA
+      this.b = matrixB
+      this.c = matrixC
+      this.d = matrixD
+    }
+}
+
 let customShapeOverlay = 
 {
 
@@ -149,13 +160,13 @@ let customShapeOverlay =
         }
         else if(action == 0)
         {
-            colorsIndex[this.actualColor - 1].innerHTML = ""
+            colorsIndex[this.actualColor - 1].innerHTML = ''
         }
     },
 
     basicShapeButton()
     {
-        document.querySelector(".shapeMenuOverlay_basicPieces_pieces svg").addEventListener('click', () =>
+        document.querySelector('.shapeMenuOverlay_basicPieces_pieces svg').addEventListener('click', () =>
         {
             customShapeOverlay.launchingGame(0)
         })
@@ -177,6 +188,16 @@ let customShapeOverlay =
             tetris.start()
             tetris.state = 1
         },250)
+    },
+
+    rotateGrid()
+    {
+        window.addEventListener('mousemove', () => 
+        {
+            let rotateY = (event.clientX - (screen.width / 2)) * 30 / (screen.width / 2)
+            console.log(rotateY)
+            document.querySelector('.containerTetris table').style.transform = `rotateY(${rotateY}deg)`
+        })
     }
 }
 customShapeOverlay.landingOverlayAnimation()
@@ -184,14 +205,3 @@ customShapeOverlay.drawing()
 customShapeOverlay.nextShape()
 customShapeOverlay.previousShape()
 customShapeOverlay.basicShapeButton()
-
-class Shape 
-{
-    constructor(color, matrixA, matrixB, matrixC, matrixD) {
-      this.color = color
-      this.a = matrixA
-      this.b = matrixB
-      this.c = matrixC
-      this.d = matrixD
-    }
-}
