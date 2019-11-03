@@ -3,6 +3,7 @@ let tetris = {
     height : 20,
     domMatrix : [],
     gridMatrix : [],
+    gridRow : [],
     state : 0, // 0 paused // 1 start // 2 game over //
     level : 1,
     intervalDelay : 750,
@@ -271,12 +272,17 @@ let tetris = {
 
     domMatrixCreation(){
         let u = 0
+        this.domMatrix = []
         for (let i = 0; i < this.height; i++) {
             this.domMatrix.push([])
             for (let j = 0; j < this.width; j++) {
                 this.domMatrix[i].push(document.querySelectorAll('.containerTetris_grid td')[u])
                 u += 1
             }
+        }
+        this.gridRow = []
+        for (let i = 0; i < this.width; i++) {
+            this.gridRow.push(0)
         }
     },
 
@@ -402,11 +408,30 @@ let tetris = {
     },
 
     fullLineDestroy(lineHeight){
-        lineDom = []
+        let table = document.querySelector('.containerTetris_grid')
+        let tableRows = document.querySelectorAll('.containerTetris_grid tr')
+        fullLine = tableRows[lineHeight]
+        upLine = tableRows[lineHeight - 1]
+        table.replaceChild(upLine, fullLine)
+        let domRow = document.createElement('tr')
         for (let i = 0; i < this.width; i++) {
-            lineDom.push(this.domMatrix[lineHeight][i])
+            let domRowCell = document.createElement('td')
+            domRow.appendChild(domRowCell)
+            this.domCubeCreation(domRowCell, "purple")
+            this.domCubeCreation(domRowCell, "blue")
+            this.domCubeCreation(domRowCell, "orange")
+            this.domCubeCreation(domRowCell, "red")
+            this.domCubeCreation(domRowCell, "green")
+            this.domCubeCreation(domRowCell, "yellow")
+            this.domCubeCreation(domRowCell, "pink")
         }
-        console.log(lineDom)
+        let firstRow = document.querySelector('.containerTetris_grid tr:nth-child(1)')
+        table.insertBefore(domRow, firstRow)
+        this.gridMatrix.splice(lineHeight, 1)
+        this.gridMatrix.unshift(this.gridRow)
+        this.domMatrixCreation()
+        console.log(this.gridMatrix)
+        console.log(this.domMatrix)
     },
 
     keyboardControlsTouchDown : event => {
@@ -493,7 +518,6 @@ let tetris = {
             this.actualShapePosY += 1
             this.gridClear()
             this.shapeDisplay(this.actualShape, this.shapeTab[this.actualShapeState])
-            this.fullLineTest()
         }
         else{
             this.shapeFreezing(this.actualShape, this.shapeTab[this.actualShapeState])
@@ -501,6 +525,7 @@ let tetris = {
             this.randomShape()
             this.actualShapePosX = 3
             this.actualShapePosY = 0
+            this.fullLineTest()
             // this.loseTest(tetris.actualShape, tetris.actualShapeState)
         }
     },
@@ -515,6 +540,7 @@ let tetris = {
         tetris.randomShape()
         tetris.randomShape()
         tetris.settingFallingInterval()
+        console.log(this.gridMatrix)
     },
 
 }
